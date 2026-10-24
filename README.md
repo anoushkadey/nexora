@@ -42,3 +42,11 @@ The repo includes a `render.yaml` Blueprint for a free static site.
 3. Render gives you a `https://nexora-xxxx.onrender.com` URL. You can add a custom domain later under the service's **Settings → Custom Domains**.
 
 Every push to that branch redeploys the site.
+
+## Deploying on GitHub Pages
+
+1. On GitHub, open the repo's **Settings → Pages**.
+2. Under **Build and deployment**, set Source to **Deploy from a branch**.
+3. Pick the branch with the site and the **/ (root)** folder, then click **Save**.
+
+After a minute or two the site is live at `https://anoushkadey.github.io/nexora/`. Every push to that branch redeploys it. The empty `.nojekyll` file tells Pages to serve the files as they are.
