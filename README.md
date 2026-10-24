@@ -30,5 +30,5 @@ css/style.css     all styles (palette tokens at the top)
 js/data.js        content
 js/main.js        animation and interactions
 js/vendor/        GSAP 3.12.5 + ScrollTrigger, Lenis 1.1.13 (smooth scroll)
-assets/           logo, paper texture
+assets/           logo (original + circular badge), paper texture
 ```
