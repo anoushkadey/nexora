@@ -945,6 +945,7 @@ h1, h2, h3, h4, p { margin: 0; }
   .dept-count { display: none; }
   .dept-go { margin-left: auto; }
   .footer-inner { flex-direction: column; text-align: center; }
+  .flow { --cw: min(76vw, 290px); --ch: calc(var(--cw) * 1.62); }
   .socials-foot { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
