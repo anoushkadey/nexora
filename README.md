@@ -32,3 +32,13 @@ js/main.js        animation and interactions
 js/vendor/        GSAP 3.12.5 + ScrollTrigger, Lenis 1.1.13 (smooth scroll)
 assets/           logo (original + circular badge), paper texture
 ```
+
+## Deploying on Render
+
+The repo includes a `render.yaml` Blueprint for a free static site.
+
+1. In Render, click **New → Blueprint** and connect this GitHub repo.
+2. Pick the branch to deploy and click **Apply**.
+3. Render gives you a `https://nexora-xxxx.onrender.com` URL. You can add a custom domain later under the service's **Settings → Custom Domains**.
+
+Every push to that branch redeploys the site.

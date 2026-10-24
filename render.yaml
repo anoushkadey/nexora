@@ -1,0 +1,19 @@
+# Render Blueprint: deploys the site as a free static site.
+# In Render: New → Blueprint → pick this repo. Every push redeploys.
+services:
+  - type: web
+    name: nexora
+    runtime: static
+    buildCommand: echo "No build step"
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=604800
