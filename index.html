@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexora — Coding Society</title>
+  <meta name="description" content="Nexora is a student coding society. Meet the union, the team, and join the community.">
+  <meta name="theme-color" content="#25445b">
+  <link rel="icon" href="assets/logo.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Knewave&family=Courier+Prime:wght@400;700&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Reusable drawings. Everything is hand-built SVG so it stays crisp and on-palette. -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5.5" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor"/></symbol>
+      <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3.5" fill="none" stroke="currentColor" stroke-width="2.2"/><rect x="7" y="10.2" width="2.4" height="7" fill="currentColor"/><circle cx="8.2" cy="7.4" r="1.45" fill="currentColor"/><path d="M11.6 17.2v-7h2.3v1c.5-.8 1.4-1.2 2.5-1.2 1.9 0 2.8 1.2 2.8 3.4v3.8h-2.4v-3.5c0-1-.4-1.6-1.3-1.6s-1.5.6-1.5 1.7v3.4z" fill="currentColor"/></symbol>
+      <symbol id="i-discord" viewBox="0 0 24 24"><path d="M19.3 5.6a16 16 0 0 0-4-1.3l-.5 1.1a14.6 14.6 0 0 0-5.6 0l-.5-1.1a16 16 0 0 0-4 1.3C2.2 9.4 1.5 13 1.8 16.6a16 16 0 0 0 4.9 2.5l1-1.6-1.7-.8.4-.3a11.4 11.4 0 0 0 11.2 0l.4.3-1.7.8 1 1.6a16 16 0 0 0 4.9-2.5c.4-4.2-.7-7.8-2.9-11Z" fill="currentColor"/><ellipse cx="8.9" cy="13" rx="1.6" ry="1.8" fill="var(--icon-bg, #f3d796)"/><ellipse cx="15.1" cy="13" rx="1.6" ry="1.8" fill="var(--icon-bg, #f3d796)"/></symbol>
+
+      <!-- yellow 4-point sparkle with an ink drop shadow, like the sticker sheet -->
+      <symbol id="sparkle" viewBox="0 0 100 100"><path d="M53 8 C57 38 64 45 94 50 C64 55 57 62 53 92 C49 62 42 55 12 50 C42 45 49 38 53 8Z" fill="#15130f"/><path d="M50 4 C54 34 61 41 91 46 C61 51 54 58 50 88 C46 58 39 51 9 46 C39 41 46 34 50 4Z" fill="#f1c21b" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/></symbol>
+      <symbol id="bolt" viewBox="0 0 80 120"><path d="M38 6 L10 66 L34 64 L22 114 L70 44 L44 46 L60 6Z" transform="translate(5 4)" fill="#15130f"/><path d="M38 6 L10 66 L34 64 L22 114 L70 44 L44 46 L60 6Z" fill="#f1c21b" stroke="#15130f" stroke-width="3.5" stroke-linejoin="round"/></symbol>
+
+      <!-- placeholder bust until real photos come in -->
+      <symbol id="bust" viewBox="0 0 120 140"><path d="M6 140 C10 104 32 92 60 90 C88 92 110 104 114 140Z" fill="currentColor"/><rect x="50" y="72" width="20" height="24" rx="6" fill="currentColor"/><ellipse cx="60" cy="54" rx="24" ry="28" fill="currentColor"/><path d="M33 52 L28 34 L38 40 L36 22 L48 32 L52 14 L60 28 L70 12 L74 30 L86 20 L84 38 L94 34 L88 52 C84 36 74 30 60 30 C46 30 36 36 33 52Z" fill="currentColor"/></symbol>
+
+      <symbol id="fish" viewBox="0 0 90 54"><path d="M64 27 L86 11 L81 27 L86 43Z" fill="currentColor" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><path d="M6 27 C16 6 50 3 66 27 C50 51 16 48 6 27Z" fill="currentColor" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><path d="M30 16 Q37 27 30 38" fill="none" stroke="#15130f" stroke-width="2.5" stroke-linecap="round"/><path d="M40 9 Q46 3 54 12" fill="none" stroke="#15130f" stroke-width="2.5" stroke-linecap="round"/><circle cx="19" cy="23" r="3.6" fill="#15130f"/><circle cx="18" cy="21.8" r="1.1" fill="#fbf5ea"/></symbol>
+      <symbol id="puffer" viewBox="0 0 80 70"><path d="M58 35 L76 24 L72 35 L76 46Z" fill="currentColor" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><g stroke="#15130f" stroke-width="2.5" stroke-linecap="round"><path d="M30 6 V1"/><path d="M44 8 L47 3"/><path d="M16 12 L12 8"/><path d="M8 35 H3"/><path d="M16 58 L12 62"/><path d="M30 64 V69"/><path d="M44 62 L47 67"/></g><circle cx="31" cy="35" r="28" fill="currentColor" stroke="#15130f" stroke-width="3"/><circle cx="20" cy="29" r="4" fill="#15130f"/><circle cx="19" cy="27.6" r="1.2" fill="#fbf5ea"/><path d="M12 42 Q16 46 21 43" fill="none" stroke="#15130f" stroke-width="2.5" stroke-linecap="round"/></symbol>
+      <symbol id="jelly" viewBox="0 0 70 110"><g fill="none" stroke="#fbf5ea" stroke-width="2.5" stroke-linecap="round" opacity=".85"><path d="M18 46 C12 60 24 70 16 86"/><path d="M30 48 C26 66 36 76 30 100"/><path d="M42 48 C46 64 36 78 42 96"/><path d="M53 46 C58 58 48 70 56 84"/></g><path d="M6 46 C6 18 20 6 35 6 C50 6 64 18 64 46 C56 42 50 50 44 46 C38 42 32 50 26 46 C20 42 14 50 6 46Z" fill="currentColor" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><circle cx="26" cy="30" r="2.6" fill="#15130f"/><circle cx="44" cy="30" r="2.6" fill="#15130f"/></symbol>
+      <symbol id="plankton" viewBox="0 0 40 40"><circle cx="20" cy="20" r="11" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="4" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 3V7"/><path d="M20 33V37"/><path d="M3 20H7"/><path d="M33 20H37"/><path d="M8 8L10.5 10.5"/><path d="M29.5 29.5L32 32"/><path d="M8 32L10.5 29.5"/><path d="M29.5 10.5L32 8"/></g></symbol>
+      <symbol id="diatom" viewBox="0 0 40 20"><path d="M3 10 C10 1 30 1 37 10 C30 19 10 19 3 10Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 5V15M20 4V16M28 5V15" stroke="currentColor" stroke-width="1.6"/></symbol>
+
+      <!-- department icons -->
+      <symbol id="d-frontend" viewBox="0 0 48 48"><rect x="4" y="8" width="40" height="30" rx="4" fill="#fbf5ea" stroke="#15130f" stroke-width="3"/><path d="M4 16H44" stroke="#15130f" stroke-width="3"/><path d="M19 23L14 28L19 33M29 23L34 28L29 33" fill="none" stroke="#25445b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="d-backend" viewBox="0 0 48 48"><g fill="#fbf5ea" stroke="#15130f" stroke-width="3"><rect x="8" y="6" width="32" height="10" rx="3"/><rect x="8" y="19" width="32" height="10" rx="3"/><rect x="8" y="32" width="32" height="10" rx="3"/></g><g fill="#f1c21b" stroke="#15130f" stroke-width="2"><circle cx="15" cy="11" r="2"/><circle cx="15" cy="24" r="2"/><circle cx="15" cy="37" r="2"/></g></symbol>
+      <symbol id="d-data" viewBox="0 0 48 48"><path d="M6 42H44" stroke="#15130f" stroke-width="3" stroke-linecap="round"/><g fill="#fbf5ea" stroke="#15130f" stroke-width="3"><rect x="9" y="24" width="7" height="18"/><rect x="21" y="14" width="7" height="28"/><rect x="33" y="28" width="7" height="14"/></g><path d="M8 18L20 8L30 16L42 6" fill="none" stroke="#25445b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="d-events" viewBox="0 0 48 48"><rect x="6" y="10" width="36" height="32" rx="4" fill="#fbf5ea" stroke="#15130f" stroke-width="3"/><path d="M6 19H42" stroke="#15130f" stroke-width="3"/><path d="M15 5V13M33 5V13" stroke="#15130f" stroke-width="3" stroke-linecap="round"/><path d="M24 24L26 29L31 29.5L27 33L28.5 38L24 35L19.5 38L21 33L17 29.5L22 29Z" fill="#f1c21b" stroke="#15130f" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="d-design" viewBox="0 0 48 48"><path d="M24 4L36 22L30 42H18L12 22Z" fill="#fbf5ea" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><path d="M24 4V24" stroke="#15130f" stroke-width="2.5"/><circle cx="24" cy="27" r="3.5" fill="#f1c21b" stroke="#15130f" stroke-width="2.5"/><path d="M18 42H30" stroke="#15130f" stroke-width="3"/></symbol>
+      <symbol id="d-pr" viewBox="0 0 48 48"><path d="M8 19H16L34 8V40L16 29H8Z" fill="#fbf5ea" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><path d="M14 29L18 42H24L21 30" fill="#fbf5ea" stroke="#15130f" stroke-width="3" stroke-linejoin="round"/><path d="M39 17C42 20 42 28 39 31" fill="none" stroke="#25445b" stroke-width="3" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ compact bar that appears once you leave the hero ============ -->
+  <div class="minibar" aria-hidden="true">
+    <a href="#top" class="minibar-logo" tabindex="-1"><img src="assets/logo.jpg" alt=""></a>
+    <nav>
+      <a href="#about" tabindex="-1">About Us</a>
+      <a href="#team" tabindex="-1">Team</a>
+      <button type="button" class="minibar-join" data-open-join tabindex="-1">Join</button>
+    </nav>
+  </div>
+
+  <!-- ===================================== HERO ===================================== -->
+  <header class="hero" id="top">
+    <!-- the blue sheet underneath -->
+    <div class="sheet-blue">
+      <p class="tagline" aria-label="Your coding community">
+        <span class="tw">Your</span>
+        <span class="tw tw-hl">coding</span>
+        <span class="tw">community</span>
+        <svg class="tag-scribble" viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"><path d="M4 18 C60 8 120 26 180 14 S270 10 296 16" fill="none" stroke="#f1c21b" stroke-width="5" stroke-linecap="round"/></svg>
+      </p>
+    </div>
+
+    <!-- cream paper on top, cut into three pieces along the tear lines -->
+    <div class="piece piece-top">
+      <div class="fringe"></div>
+      <div class="piece-paper">
+        <nav class="topbar" aria-label="Main">
+          <a class="brand" href="#top" aria-label="Nexora home">
+            <img src="assets/logo.jpg" alt="Nexora Coding Society logo" width="72" height="72">
+          </a>
+          <div class="topbar-right">
+            <a href="#about" class="pill">About Us</a>
+            <ul class="socials" aria-label="Socials">
+              <li><a data-social="instagram" href="#" aria-label="Instagram"><svg><use href="#i-insta"/></svg></a></li>
+              <li><a data-social="linkedin"  href="#" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a></li>
+              <li><a data-social="discord"   href="#" aria-label="Discord"><svg><use href="#i-discord"/></svg></a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="title-wrap">
+          <span class="kicker">coding society</span>
+          <h1 class="title" aria-label="Nexora">
+            <span class="ltr">N</span><span class="ltr">E</span><span class="ltr">X</span><span class="ltr">O</span><span class="ltr">R</span><span class="ltr">A</span>
+          </h1>
+          <svg class="deco deco-s1"><use href="#sparkle"/></svg>
+          <svg class="deco deco-s2"><use href="#sparkle"/></svg>
+          <svg class="deco deco-bolt"><use href="#bolt"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece piece-strip" aria-hidden="true"><div class="fringe"></div><div class="piece-paper"></div></div>
+
+    <div class="piece piece-bottom">
+      <div class="fringe"></div>
+      <div class="piece-paper">
+        <div class="join-wrap">
+          <button type="button" class="join-btn" data-open-join>
+            <span>Join our community</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12H19M13 6L19 12L13 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <svg class="deco deco-s3"><use href="#sparkle"/></svg>
+        </div>
+        <a href="#about" class="glide-cue">
+          <span>glide down</span>
+          <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 3V34M4 26L12 35L20 26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================================= ABOUT US · UNION ================================= -->
+    <section class="sea" id="about" aria-labelledby="union-title">
+      <div class="sea-surface sea-surface-back" aria-hidden="true"></div>
+      <div class="sea-surface" aria-hidden="true"></div>
+
+      <div class="sea-intro">
+        <span class="label label-tape">About Us</span>
+        <h2 class="sea-title" id="union-title">The Union</h2>
+        <p class="sea-sub">Four people steer the ship. Keep scrolling to meet them.</p>
+      </div>
+
+      <!-- pinned "anime intro" stage -->
+      <div class="stage" aria-label="Union members">
+        <div class="stage-sea" aria-hidden="true">
+          <div class="rays"></div>
+          <div class="drifters"></div>
+        </div>
+        <svg class="speedlines" aria-hidden="true"></svg>
+        <div class="burst" aria-hidden="true"></div>
+        <div class="scenes"></div>
+        <div class="flash" aria-hidden="true"></div>
+        <div class="wipe" aria-hidden="true"><i></i><i></i><i></i></div>
+        <ol class="stage-index" aria-hidden="true"></ol>
+      </div>
+
+      <!-- everyone together, after the intros -->
+      <div class="crew">
+        <h3 class="crew-title"><span>All hands</span> on deck</h3>
+        <div class="crew-grid"></div>
+        <div class="seabed" aria-hidden="true">
+          <canvas class="tentacle"></canvas>
+          <svg class="weeds" viewBox="0 0 1440 220" preserveAspectRatio="none"></svg>
+        </div>
+      </div>
+
+      <div class="sea-shore" aria-hidden="true"></div>
+    </section>
+
+    <!-- ================================= ABOUT THE TEAM ================================= -->
+    <section class="team paper" id="team" aria-labelledby="team-title">
+      <header class="sec-head">
+        <span class="label label-tape">About the Team</span>
+        <h2 class="sec-title" id="team-title">Two sides, one crew</h2>
+      </header>
+
+      <div class="sides">
+        <article class="side side-tech" data-glide>
+          <h3>Technical</h3>
+          <ul class="dept-list" data-side="Technical"></ul>
+        </article>
+        <article class="side side-non" data-glide>
+          <h3>Non&#8209;Technical</h3>
+          <ul class="dept-list" data-side="Non-Technical"></ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================= ABOUT THE HEADS ================================= -->
+    <section class="heads paper" id="heads" aria-labelledby="heads-title">
+      <header class="sec-head">
+        <span class="label label-tape">About the Heads</span>
+        <h2 class="sec-title" id="heads-title">Who runs what</h2>
+      </header>
+      <div class="dept-blocks"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <img src="assets/logo.jpg" alt="" width="56" height="56">
+    <p>Nexora Coding Society</p>
+    <ul class="socials socials-foot">
+      <li><a data-social="instagram" href="#" aria-label="Instagram"><svg><use href="#i-insta"/></svg></a></li>
+      <li><a data-social="linkedin"  href="#" aria-label="LinkedIn"><svg><use href="#i-linkedin"/></svg></a></li>
+      <li><a data-social="discord"   href="#" aria-label="Discord"><svg><use href="#i-discord"/></svg></a></li>
+    </ul>
+  </footer>
+
+  <!-- ================================= JOIN FORM ================================= -->
+  <div class="join-modal" id="join" role="dialog" aria-modal="true" aria-labelledby="join-title" hidden>
+    <div class="join-backdrop" data-close-join></div>
+    <div class="join-sheet">
+      <span class="tape tape-top" aria-hidden="true"></span>
+      <button type="button" class="join-close" data-close-join aria-label="Close">
+        <svg viewBox="0 0 24 24"><path d="M5 5L19 19M19 5L5 19" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+      </button>
+
+      <form class="join-form" novalidate>
+        <span class="form-file">Application · Nexora</span>
+        <h2 id="join-title">Join the community</h2>
+
+        <div class="row">
+          <label class="field"><span>Full name</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+        </div>
+        <div class="row">
+          <label class="field"><span>Course</span><input name="course" required></label>
+          <label class="field"><span>Year</span>
+            <select name="year" required>
+              <option value="" disabled selected>Pick one</option>
+              <option>1st year</option><option>2nd year</option><option>3rd year</option><option>4th year</option><option>Other</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset class="field chips-field">
+          <legend>Which departments interest you?</legend>
+          <div class="chips"></div>
+        </fieldset>
+
+        <label class="field"><span>Why do you want to join?</span><textarea name="why" rows="3" required></textarea></label>
+        <label class="field"><span>GitHub / portfolio <em>(optional)</em></span><input name="link" type="url" placeholder="https://"></label>
+
+        <p class="form-error" role="alert"></p>
+        <button type="submit" class="join-btn submit-btn"><span>Send application</span></button>
+      </form>
+
+      <div class="join-done" hidden>
+        <div class="stamp-received">Received</div>
+        <h2>You're on the list.</h2>
+        <p>We'll reach out on the email you gave us.</p>
+        <button type="button" class="pill" data-close-join>Back to the site</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/vendor/gsap.min.js"></script>
+  <script src="js/vendor/ScrollTrigger.min.js"></script>
+  <script src="js/vendor/lenis.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
