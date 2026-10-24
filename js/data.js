@@ -3,70 +3,92 @@
   ---------------------
   Everything people will want to edit lives here, so nobody has to dig
   through the animation code. Leave a field as "" and the site shows a
-  placeholder for it.
+  placeholder for it. Text is shown exactly as written here.
 
-  photo:     path to an image, e.g. "assets/team/president.jpg"
-  portfolio: full URL to a portfolio, resume PDF, GitHub, etc.
+  photo:   path to an image, e.g. "assets/team/ansshita.jpg"
+  link:    portfolio, LinkedIn, resume... LinkedIn URLs are labelled
+           "LinkedIn", anything else is labelled "Portfolio".
+  college: only for people from other colleges; shown at the end of the line.
 */
 
 window.NEXORA = {
   socials: {
-    instagram: "",
-    linkedin: "",
-    discord: "",
+    instagram: "https://www.instagram.com/nexora.thecodingcommunity",
+    linkedin: "https://www.linkedin.com/company/nexora-thecodingcommunity",
+    discord: "https://discord.gg/SurJ2DFBS",
   },
 
-  // Where the "Join our community" form gets sent.
-  // Works with Formspree / Getform / any endpoint that accepts a JSON POST.
-  // Left empty, the form still works on the page but nothing is sent anywhere.
+  // URL of the Google Apps Script web app that saves applications to the
+  // Google Sheet (see backend/SETUP.md). Left empty, the form still works on
+  // the page but nothing is saved.
   formEndpoint: "",
 
   union: [
-    { role: "President",         name: "", course: "", year: "", line: "", photo: "" },
-    { role: "Vice President",    name: "", course: "", year: "", line: "", photo: "" },
-    { role: "General Secretary", name: "", course: "", year: "", line: "", photo: "" },
-    { role: "Treasurer",         name: "", course: "", year: "", line: "", photo: "" },
+    {
+      role: "President", name: "Ansshita Kumar",
+      course: "bsc (H) physics", year: "2nd year",
+      line: "Physics student and tech enthusiast who loves building websites, hackathon projects and anything that turns an idea into something real.",
+      link: "https://gurltff.github.io/myportfolio/", photo: "",
+    },
+    {
+      role: "Vice President", name: "Anoushka Dey",
+      course: "bsc prog physical science with chemistry", year: "2nd year",
+      line: "curiosity always got the best of me in STEM :3",
+      link: "https://www.linkedin.com/in/anoushka-dey-909aa3377", photo: "",
+    },
+    {
+      role: "General Secretary", name: "Rachiel Singh",
+      course: "B.Sc.(H) physics", year: "2 year",
+      line: "",
+      link: "https://reyysingh.github.io/rey-portfolio/", photo: "",
+    },
+    {
+      role: "Treasurer", name: "Sakshi Sharma",
+      course: "BSc(prog) Physical Science with Chemistry", year: "2nd year",
+      line: "Science, Tech and research enthusiast",
+      link: "https://www.linkedin.com/in/sakshi-sharma-7b8a34378", photo: "",
+    },
   ],
 
   departments: [
     {
       id: "frontend", name: "Frontend", side: "Technical", icon: "frontend",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Ansshita Kumar", course: "bsc (H) physics", year: "2nd year", link: "https://gurltff.github.io/myportfolio/", photo: "" },
+        { name: "Anoushka Dey", course: "bsc prog physical science with chemistry", year: "2nd year", link: "https://www.linkedin.com/in/anoushka-dey-909aa3377", photo: "" },
       ],
     },
     {
       id: "backend", name: "Backend", side: "Technical", icon: "backend",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Sakshi Sharma", course: "BSc(prog) Physical Science with Chemistry", year: "2nd year", link: "https://www.linkedin.com/in/sakshi-sharma-7b8a34378", photo: "" },
+        { name: "Rachiel Singh", course: "B.Sc.(H) physics", year: "2 year", link: "https://reyysingh.github.io/rey-portfolio/", photo: "" },
       ],
     },
     {
       id: "data-science", name: "Data Science", side: "Technical", icon: "data",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Nishtha", course: "B.Sc.(H) physics", year: "2nd year", link: "", photo: "" },
       ],
     },
     {
       id: "events", name: "Events Management", side: "Non-Technical", icon: "events",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Nidhi Singh", course: "Bsc prog physical science with chemistry", year: "2nd year", link: "https://www.linkedin.com/in/nidhi-singh-9434b0387", photo: "" },
+        { name: "Raghav Singh", course: "BA Economics (H)", year: "2nd Year", college: "Maharaja Agrasen Institute of Management", link: "https://gurltff.github.io/myportfolio2/", photo: "" },
       ],
     },
     {
       id: "design", name: "Design & Creative", side: "Non-Technical", icon: "design",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Shagun Tomar", course: "BSc Hons Physics", year: "Second year", link: "https://in.linkedin.com/in/shagun-tomar-b80340307", photo: "" },
+        { name: "Lakshay", course: "BTECH CSE AIML", year: "3RD YEAR", college: "UPES Dehradun", link: "", photo: "" },
       ],
     },
     {
       id: "pr", name: "PR & Outreach", side: "Non-Technical", icon: "pr",
       heads: [
-        { name: "", course: "", year: "", portfolio: "", photo: "" },
+        { name: "Arya Mishra", course: "Bcom (H)", year: "2nd year", link: "", photo: "" },
       ],
     },
   ],

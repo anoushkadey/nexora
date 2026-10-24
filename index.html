@@ -236,6 +236,7 @@
           <label class="field"><span>Full name</span><input id="f-name" name="name" autocomplete="name" required></label>
           <label class="field"><span>Email</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
         </div>
+        <label class="field"><span>College</span><input id="f-college" name="college" autocomplete="organization" required></label>
         <div class="row">
           <label class="field"><span>Course</span><input id="f-course" name="course" required></label>
           <label class="field"><span>Year</span>
@@ -252,8 +253,17 @@
         </fieldset>
 
         <label class="field"><span>Why do you want to join?</span><textarea id="f-why" name="why" rows="3" required></textarea></label>
-        <label class="field"><span>GitHub / portfolio <em>(optional)</em></span><input id="f-link" name="link" type="url" placeholder="https://"></label>
+        <div class="field file-field">
+          <span id="f-resume-label">Resume / portfolio <em>(PDF or Word, up to 5 MB)</em></span>
+          <label class="file-drop">
+            <input id="f-resume" name="resume" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required aria-labelledby="f-resume-label">
+            <span class="file-btn">Choose file</span>
+            <span class="file-name">No file chosen</span>
+          </label>
+        </div>
+        <label class="field"><span>GitHub <em>(optional)</em></span><input id="f-link" name="link" type="url" placeholder="https://"></label>
 
+        <label class="hp" aria-hidden="true">Leave this empty<input name="company" tabindex="-1" autocomplete="off"></label>
         <p class="form-error" role="alert"></p>
         <button type="submit" class="join-btn submit-btn"><span>Send application</span></button>
       </form>

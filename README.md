@@ -16,9 +16,9 @@ python3 -m http.server 8000
 All names, photos, links and socials live in **`js/data.js`**. Leave a field empty (`""`) and the site shows a placeholder for it.
 
 - `socials`: the Instagram, LinkedIn and Discord URLs
-- `formEndpoint`: where the "Join our community" form is sent (for example a Formspree URL). While it's empty the form still works on the page, but nothing gets sent anywhere.
+- `formEndpoint`: the Google Apps Script URL that saves applications to a Google Sheet. Setup steps are in `backend/SETUP.md`. While it's empty the form still works on the page, but nothing is saved.
 - `union`: President, Vice President, General Secretary, Treasurer
-- `departments`: each department's heads (name, course, year, portfolio/resume link, photo)
+- `departments`: each department's heads (name, course, year, college, link, photo)
 
 Put photos in `assets/team/` and point to them from `js/data.js`, e.g. `photo: "assets/team/president.jpg"`.
 

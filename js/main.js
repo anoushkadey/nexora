@@ -9,7 +9,8 @@
   const hasGsap = !!window.gsap;
 
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const courseYear = (m) => [m.course, m.year].filter(Boolean).join(" · ");
+  const courseYear = (m) => [m.course, m.year, m.college].filter(Boolean).join(" · ");
+  const linkLabel = (url) => (/linkedin\.com/i.test(url) ? "LinkedIn" : "Portfolio");
   const ph = (val, fallback) => (val ? esc(val) : `<span class="placeholder">${fallback}</span>`);
   const icon = (id, cls = "") => `<svg class="${cls}" aria-hidden="true"><use href="#${id}"/></svg>`;
 
@@ -205,7 +206,8 @@
       <div class="mcard-body">
         <h3 class="mcard-name"><span>${m.name ? esc(m.name) : "Name TBA"}</span></h3>
         <p class="mcard-meta">${courseYear(m) ? esc(courseYear(m)) : "Course · Year"}</p>
-        <p class="mcard-line">${ph(m.line, "One-line description goes here.")}</p>
+        ${m.line ? `<p class="mcard-line">${esc(m.line)}</p>` : ""}
+        ${m.link ? `<a class="mcard-link" href="${esc(m.link)}" target="_blank" rel="noopener" draggable="false">${linkLabel(m.link)} ${icon("i-arrow-up-right")}</a>` : ""}
       </div>
       <span class="mcard-shade"></span>
     </article>`).join("");
@@ -233,6 +235,7 @@
       const shade = { opacity: d === 0 ? 0 : Math.min(0.06 + ad * 0.08, 0.3) };
       c.classList.toggle("is-active", d === 0);
       c.setAttribute("aria-hidden", d === 0 ? "false" : "true");
+      $$("a", c).forEach((l) => (l.tabIndex = d === 0 ? 0 : -1));
       if (!hasGsap) {
         c.style.transform = `translateX(${props.x}px) translateZ(${props.z}px) rotateY(${props.rotationY}deg) scale(${props.scale})`;
         c.style.zIndex = props.zIndex;
@@ -249,7 +252,7 @@
     if (!hasGsap || reduced) return;
     const c = cards[active];
     gsap.fromTo($(".mcard-name > span", c), { yPercent: 105 }, { yPercent: 0, duration: 0.7, ease: "expo.out", delay: 0.15 });
-    gsap.fromTo([$(".mcard-meta", c), $(".mcard-line", c)], { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08, delay: 0.3, ease: "power2.out" });
+    gsap.fromTo($$(".mcard-meta, .mcard-line, .mcard-link", c), { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.08, delay: 0.3, ease: "power2.out" });
     gsap.fromTo($(".mcard-role", c), { scale: 0.6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.5, ease: "back.out(2.5)", delay: 0.2 });
   }
 
@@ -283,7 +286,7 @@
   flow.addEventListener("click", (e) => {
     if (moved) return;
     const c = e.target.closest(".mcard");
-    if (c && +c.dataset.i !== active) go(+c.dataset.i);
+    if (c && +c.dataset.i !== active) { e.preventDefault(); go(+c.dataset.i); }
   });
 
   // gentle autoplay while visible, until someone touches it
@@ -372,8 +375,8 @@
       <div class="head-photo">${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name || "Department head")}" loading="lazy">` : icon("star", "ph-star")}</div>
       <h4>${p.name ? esc(p.name) : "Name TBA"}</h4>
       <p class="meta">${courseYear(p) ? esc(courseYear(p)) : "Course · Year"}</p>
-      ${p.portfolio
-        ? `<a class="head-link" href="${esc(p.portfolio)}" target="_blank" rel="noopener">Portfolio / Resume ${icon("i-arrow-up-right")}</a>`
+      ${p.link
+        ? `<a class="head-link" href="${esc(p.link)}" target="_blank" rel="noopener">${linkLabel(p.link)} ${icon("i-arrow-up-right")}</a>`
         : `<span class="head-link is-empty">Link coming soon</span>`}
     </article>`;
 
@@ -453,7 +456,13 @@
       document.documentElement.style.overflow = "";
       lenis && lenis.start();
       lastFocus && lastFocus.focus();
-      if (!done.hidden) { form.reset(); form.hidden = false; done.hidden = true; }
+      if (!done.hidden) {
+        form.reset();
+        fileLabel.textContent = "No file chosen";
+        fileLabel.classList.remove("has-file");
+        form.hidden = false;
+        done.hidden = true;
+      }
     };
     if (hasGsap && !reduced) {
       gsap.to($(".join-backdrop", modal), { opacity: 0, duration: 0.25 });
@@ -474,38 +483,64 @@
   });
   form.addEventListener("input", (e) => e.target.closest(".field")?.classList.remove("is-bad"));
 
+  const MAX_RESUME = 5 * 1024 * 1024;
+  const RESUME_TYPES = /\.(pdf|docx?)$/i;
+  const fileLabel = $(".file-name", form);
+  form.elements.resume.addEventListener("change", (e) => {
+    const f = e.target.files[0];
+    fileLabel.textContent = f ? f.name : "No file chosen";
+    fileLabel.classList.toggle("has-file", !!f);
+  });
+  const toBase64 = (f) => new Promise((ok, fail) => {
+    const r = new FileReader();
+    r.onload = () => ok(String(r.result).split(",")[1]);
+    r.onerror = () => fail(r.error);
+    r.readAsDataURL(f);
+  });
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     errBox.textContent = "";
     let bad = null;
-    ["name", "email", "course", "year", "why"].forEach((n) => {
+    ["name", "email", "college", "course", "year", "why"].forEach((n) => {
       const el = form.elements[n];
       const ok = el.value.trim() && (n !== "email" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
       el.closest(".field").classList.toggle("is-bad", !ok);
       if (!ok && !bad) bad = el;
     });
+    const resume = form.elements.resume;
+    const file = resume.files[0];
+    const resumeErr = !file ? "Please attach your resume or portfolio."
+      : file.size > MAX_RESUME ? "That file is over 5 MB. Please attach a smaller PDF."
+      : !RESUME_TYPES.test(file.name) ? "Resumes need to be a PDF or Word file."
+      : "";
+    resume.closest(".field").classList.toggle("is-bad", !!resumeErr);
+    if (resumeErr && !bad) bad = resume;
     const link = form.elements.link;
     if (link.value && !link.checkValidity()) { link.closest(".field").classList.add("is-bad"); bad = bad || link; }
     if (bad) {
-      errBox.textContent = "A few fields still need filling in.";
+      errBox.textContent = bad === resume ? resumeErr : "A few fields still need filling in.";
       bad.focus();
       hasGsap && gsap.fromTo(sheet, { x: 0 }, { keyframes: { x: [0, -10, 9, -6, 4, 0] }, duration: 0.4, ease: "none" });
       return;
     }
     const fd = new FormData(form);
-    const payload = Object.fromEntries(fd);
+    const payload = Object.fromEntries([...fd].filter(([k]) => k !== "resume" && k !== "departments"));
     payload.departments = fd.getAll("departments");
     const btn = $(".submit-btn", form);
     btn.disabled = true;
     $("span", btn).textContent = "Sending…";
     try {
       if (D.formEndpoint) {
+        payload.resume = { name: file.name, type: file.type, data: await toBase64(file) };
+        // text/plain keeps this a "simple" request, which Apps Script accepts without a CORS preflight
         const res = await fetch(D.formEndpoint, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload),
         });
-        if (!res.ok) throw new Error(res.status);
+        const out = await res.json().catch(() => ({}));
+        if (!res.ok || !out.ok) throw new Error(out.error || res.status);
       } else {
         console.info("[Nexora] No formEndpoint set in js/data.js, so this application was not sent:", payload);
         await new Promise((r) => setTimeout(r, 600));
